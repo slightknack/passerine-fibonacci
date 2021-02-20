@@ -17,5 +17,7 @@ You can install passerine and run this program as follows:
 
 ```shell
 sh <(curl -sSf https://www.passerine.io/install.sh)
-git clone 
+git clone https://github.com/slightknack/passerine-fibonacci.git
+cd passerine-fibonacci
+aspen run
 ```
