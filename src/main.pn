@@ -1,0 +1,49 @@
+syntax 'delay x { Thunk { () -> x } }
+syntax 'eval 'delayed y  { Thunk x = y; x () }
+
+syntax 'if condition then 'else otherwise {
+    choice = magic "if" (
+        condition,
+        delay then,
+        delay otherwise,
+    )
+
+    eval delayed choice
+}
+
+syntax 'not x {
+    magic "if" (x, false, true)
+}
+
+syntax a 'or b {
+    magic "if" (a, true, b)
+}
+
+syntax 'for variable 'from low 'to high do {
+    block = variable -> do
+
+    loop = ()
+    loop = x -> if (x == high) {
+        ()
+    } else {
+        block x
+        loop (x + 1.0)
+    }
+
+    loop low
+}
+
+to_string = x -> magic "to_string" x
+
+fib = ()
+
+fib = n -> if ((n == 0.0) or (n == 1.0)) {
+    1.0
+} else {
+    fib (n - 1.0) + fib (n - 2.0)
+}
+
+for n from 0.0 to 16.0 {
+    fib_n = fib n
+    print (n.to_string + ":\t" + fib_n.to_string)
+}
