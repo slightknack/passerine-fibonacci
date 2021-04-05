@@ -22,7 +22,6 @@ syntax a 'or b {
 syntax 'for variable 'from low 'to high do {
     block = variable -> do
 
-    loop = ()
     loop = x -> if (x == high) {
         ()
     } else {
@@ -34,8 +33,6 @@ syntax 'for variable 'from low 'to high do {
 }
 
 to_string = x -> magic "to_string" x
-
-fib = ()
 
 fib = n -> if ((n == 0.0) or (n == 1.0)) {
     1.0
